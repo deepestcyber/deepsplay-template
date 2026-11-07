@@ -19,3 +19,8 @@ What is in here:
 | `pages/clock/index.html` | A page in its own folder, using the shared theme |
 | `pages/shared/theme/` | A small shared helper (`Deepsplay.helper`) with a theme and a progress bar |
 | `pages/shared/note.html` | A fragment (`page = false`): loaded by a page, not shown on its own |
+
+## Licence
+
+MIT, see [LICENSE](LICENSE). Content you add to your own repository is yours
+to license as you like.
