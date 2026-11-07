@@ -1,0 +1,38 @@
+/* Shared theme: colours as custom properties, a dark and a light scheme. */
+:root {
+  --bg: #0b0d12;
+  --fg: #eef1f6;
+  --muted: #8a93a6;
+  --accent: #4f9dff;
+  --font: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+:root[data-theme="light"] {
+  --bg: #f6f7fa;
+  --fg: #13161d;
+  --muted: #5b6474;
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+}
+
+/* Progress bar over the display time (see theme.js). */
+.theme-progress {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 0.6vmin;
+  width: 0;
+  background: var(--accent);
+  transition-property: width;
+  transition-timing-function: linear;
+}
+
+.theme-progress.running {
+  width: 100%;
+}

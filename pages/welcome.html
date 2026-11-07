@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Welcome</title>
+<script type="application/toml" id="deepsplay-page">
+description = """
+The template's welcome page: a large message, and a note loaded from a
+fragment. Replace it with your own pages.
+"""
+uses = ["theme"]
+
+[params.message]
+type        = "string"
+default     = "Hello, screen."
+description = "The large message."
+
+[params.note]
+type        = "bool"
+default     = true
+description = "Show the note below the message."
+
+[[variants]]
+label = "Good morning"
+query = "message=Good%20morning"
+
+[[variants]]
+label = "Message only, light"
+query = "note=false&theme=light"
+</script>
+<script src="/lib/v1/deepsplay.js"></script>
+<link rel="stylesheet" href="shared/theme/theme.css">
+<script src="shared/theme/theme.js"></script>
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3vmin;
+    padding: 0 8vw;
+    box-sizing: border-box;
+  }
+  h1 {
+    margin: 0;
+    font-size: clamp(2rem, 9vmin, 12rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+  h1::after {
+    content: "";
+    display: block;
+    width: 12vmin;
+    height: 1vmin;
+    margin-top: 4vmin;
+    background: var(--accent);
+  }
+  #note {
+    max-width: 60ch;
+    font-size: clamp(1rem, 2.4vmin, 2.5rem);
+    color: var(--muted);
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+<h1 id="message"></h1>
+<div id="note"></div>
+
+<script>
+  const P = Deepsplay.params()
+  document.getElementById("message").textContent = P.message
+
+  // The note is a fragment (page = false): loaded here, never shown on its own.
+  if (P.note) {
+    fetch("shared/note.html")
+      .then(response => response.text())
+      .then(html => {
+        const doc = new DOMParser().parseFromString(html, "text/html")
+        document.getElementById("note").replaceChildren(...doc.body.childNodes)
+      })
+  }
+</script>
+</body>
+</html>

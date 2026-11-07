@@ -1,0 +1,15 @@
+# The manifest: which pages are shown, and how they rotate.
+# See https://github.com/deepestcyber/deepsplay/blob/main/docs/pages.md
+title    = "deepsplay template"
+rotation = "sequential"
+duration = "15s"            # display time of pages without their own
+
+[params]                    # default parameters, for pages that declare them
+theme = "dark"
+
+[[page]]
+path = "welcome.html"
+
+[[page]]
+path     = "clock/index.html"
+duration = "10s"
